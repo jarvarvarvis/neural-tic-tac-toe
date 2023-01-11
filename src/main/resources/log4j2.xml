@@ -8,7 +8,6 @@
     <loggers>
         <root level="debug">
             <appenderRef ref="ConsoleAppender" />
-            <appenderRef ref="FileAppender"/>
         </root>
     </loggers>
 </configuration>
