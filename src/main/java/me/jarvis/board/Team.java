@@ -22,19 +22,4 @@ public enum Team {
             case NONE -> " ";
         };
     }
-
-    public static Team fromChar(char character) {
-        switch (character) {
-            case 'O' -> {
-                return ONE;
-            }
-            case 'X' -> {
-                return TWO;
-            }
-            case ' ' -> {
-                return NONE;
-            }
-            default -> throw new IllegalArgumentException(String.format("Unexpected argument: %s", character));
-        }
-    }
 }
