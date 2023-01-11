@@ -1,9 +1,6 @@
 package board;
 
-import me.jarvis.board.SquareBoard;
-import me.jarvis.board.DiagonalKind;
-import me.jarvis.board.Field;
-import me.jarvis.board.Team;
+import me.jarvis.board.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -14,11 +11,11 @@ import static org.junit.jupiter.api.Assertions.*;
 public class SquareBoardTest {
 
     public static final int BOARD_SIZE = 3;
-    private SquareBoard board;
+    private Board board;
 
     @BeforeEach
     void setUp() {
-        this.board = BoardFixture.createBoardWithCheckerboardPattern(Team.ONE, BOARD_SIZE);
+        this.board = BoardFixture.createSquareBoardWithCheckerboardPattern(Team.ONE, BOARD_SIZE);
     }
 
     @Test

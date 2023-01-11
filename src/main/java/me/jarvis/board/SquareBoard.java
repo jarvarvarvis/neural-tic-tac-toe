@@ -1,7 +1,6 @@
 package me.jarvis.board;
 
 import java.util.Arrays;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class SquareBoard extends Board {
@@ -46,32 +45,6 @@ public class SquareBoard extends Board {
     @Override
     public Stream<Field> getRowFieldStream(int row) {
         return Arrays.stream(this.fields[row]);
-    }
-
-    @Override
-    public Stream<Field> getColumnFieldStream(int columnIndex) {
-        Stream<Integer> indexStream = IntStream.range(0, this.size).boxed();
-        return indexStream.map(row -> this.fields[row][columnIndex]);
-    }
-
-    @Override
-    public Stream<Field> getDiagonalFieldStream(DiagonalKind kind) {
-        switch (kind) {
-            case TOP_LEFT_TO_BOTTOM_RIGHT -> {
-                Stream<Integer> indexStream = IntStream.range(0, this.size).boxed();
-                return indexStream.map(index -> this.get(index, index));
-            }
-            case BOTTOM_LEFT_TO_TOP_RIGHT -> {
-                Stream<Integer> indexStream = IntStream.range(0, this.size).boxed();
-                return indexStream.map(index -> {
-                    int inverseX = this.size - index - 1;
-                    return this.get(inverseX, index);
-                });
-            }
-            default -> {
-                return Stream.of();
-            }
-        }
     }
 
     @Override

@@ -1,5 +1,6 @@
 package me.jarvis.board;
 
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public abstract class Board {
@@ -15,10 +16,46 @@ public abstract class Board {
     public abstract Field get(int x, int y);
     public abstract void set(int x, int y, Team team);
 
-    public abstract Stream<Field> getFlatFieldStream();
-    public abstract Stream<Field> getRowFieldStream(int row);
-    public abstract Stream<Field> getColumnFieldStream(int columnIndex);
-    public abstract Stream<Field> getDiagonalFieldStream(DiagonalKind kind);
+    public Stream<Field> getFlatFieldStream() {
+        int size = this.getSize();
+        Stream<Integer> xStream = IntStream.range(0, size).boxed();
+        return xStream.flatMap(x -> {
+            Stream<Integer> yCoordStream = IntStream.range(0, size).boxed();
+            return yCoordStream.map(y -> this.get(x, y));
+        });
+    }
+
+    public Stream<Field> getRowFieldStream(int row) {
+        int size = this.getSize();
+        Stream<Integer> indexStream = IntStream.range(0, size).boxed();
+        return indexStream.map(column -> this.get(column, row));
+    }
+
+    public Stream<Field> getColumnFieldStream(int column) {
+        int size = this.getSize();
+        Stream<Integer> indexStream = IntStream.range(0, size).boxed();
+        return indexStream.map(row -> this.get(column, row));
+    }
+
+    public Stream<Field> getDiagonalFieldStream(DiagonalKind kind) {
+        int size = this.getSize();
+        switch (kind) {
+            case TOP_LEFT_TO_BOTTOM_RIGHT -> {
+                Stream<Integer> indexStream = IntStream.range(0, size).boxed();
+                return indexStream.map(index -> this.get(index, index));
+            }
+            case BOTTOM_LEFT_TO_TOP_RIGHT -> {
+                Stream<Integer> indexStream = IntStream.range(0, size).boxed();
+                return indexStream.map(index -> {
+                    int inverseX = size - index - 1;
+                    return this.get(inverseX, index);
+                });
+            }
+            default -> {
+                return Stream.of();
+            }
+        }
+    }
 
     @Override
     public String toString() {
