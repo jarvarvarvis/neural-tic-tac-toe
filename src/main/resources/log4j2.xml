@@ -4,9 +4,6 @@
         <console name="ConsoleAppender" target="SYSTEM_OUT">
             <patternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
         </console>
-        <file name="FileAppender" fileName="application-${date:yyyyMMdd}.log" immediateFlush="false" append="true">
-            <patternLayout pattern="%d{yyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
-        </file>
     </appenders>
     <loggers>
         <root level="debug">
