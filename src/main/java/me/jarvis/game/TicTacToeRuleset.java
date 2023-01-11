@@ -1,6 +1,6 @@
 package me.jarvis.game;
 
-import me.jarvis.board.Board;
+import me.jarvis.board.SquareBoard;
 import me.jarvis.board.DiagonalKind;
 import me.jarvis.board.Field;
 import me.jarvis.board.Team;
@@ -12,13 +12,13 @@ import java.util.stream.Stream;
 public class TicTacToeRuleset extends Ruleset {
 
     @Override
-    public boolean isGameStillRunning(Board board) {
+    public boolean isGameStillRunning(SquareBoard board) {
         Stream<Field> fieldStream = board.getFlatFieldStream();
         return !fieldStream.allMatch(Field::isOccupied);
     }
 
     @Override
-    public boolean isMoveValid(Move move, Board board) {
+    public boolean isMoveValid(Move move, SquareBoard board) {
         return !board.get(move.x(), move.y()).isOccupied();
     }
 
@@ -53,7 +53,7 @@ public class TicTacToeRuleset extends Ruleset {
     }
 
     @Override
-    public Result evaluate(Board board) {
+    public Result evaluate(SquareBoard board) {
         // Check rows
         int boardSize = board.getSize();
         Result rowResult = getIteratedResult(boardSize, row -> board.get(0, row), board::getRowFieldStream);

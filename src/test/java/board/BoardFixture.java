@@ -1,12 +1,12 @@
 package board;
 
-import me.jarvis.board.Board;
+import me.jarvis.board.SquareBoard;
 import me.jarvis.board.Team;
 
 public class BoardFixture {
 
-    public static Board createBoardWithCheckerboardPattern(Team firstTeam, int size) {
-        Board board = new Board(size);
+    public static SquareBoard createBoardWithCheckerboardPattern(Team firstTeam, int size) {
+        SquareBoard board = new SquareBoard(size);
         Team currentTeam = firstTeam;
 
         for (int y = 0; y < size; ++y) {

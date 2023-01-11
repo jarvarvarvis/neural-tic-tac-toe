@@ -1,6 +1,6 @@
 package me.jarvis.player.players;
 
-import me.jarvis.board.Board;
+import me.jarvis.board.SquareBoard;
 import me.jarvis.player.Move;
 import me.jarvis.player.Player;
 import me.jarvis.game.GameLogic;
@@ -22,7 +22,7 @@ public class RandomPlayer implements Player {
     }
     
     @Override
-    public Move getMove(Board board) {
+    public Move getMove(SquareBoard board) {
         Stream<Move> moveStream = GameLogic.getAvailableMoveStream(board);
         List<Move> moves = moveStream.toList();
         int index = this.random.nextInt(moves.size());

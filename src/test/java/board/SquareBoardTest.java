@@ -1,6 +1,6 @@
 package board;
 
-import me.jarvis.board.Board;
+import me.jarvis.board.SquareBoard;
 import me.jarvis.board.DiagonalKind;
 import me.jarvis.board.Field;
 import me.jarvis.board.Team;
@@ -11,10 +11,10 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class BoardTest {
+public class SquareBoardTest {
 
     public static final int BOARD_SIZE = 3;
-    private Board board;
+    private SquareBoard board;
 
     @BeforeEach
     void setUp() {
