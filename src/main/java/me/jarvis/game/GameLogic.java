@@ -1,12 +1,13 @@
-package me.jarvis.player;
+package me.jarvis.game;
 
 import me.jarvis.board.Board;
 import me.jarvis.board.Field;
+import me.jarvis.player.Move;
 
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-public class PlayerLogic {
+public class GameLogic {
 
     public static Stream<Move> getAvailableMoveStream(Board board) {
         Stream<Integer> xCoordStream = IntStream.range(0, board.getSize()).boxed();

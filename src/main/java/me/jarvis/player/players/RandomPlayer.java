@@ -3,7 +3,7 @@ package me.jarvis.player.players;
 import me.jarvis.board.Board;
 import me.jarvis.player.Move;
 import me.jarvis.player.Player;
-import me.jarvis.player.PlayerLogic;
+import me.jarvis.game.GameLogic;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -23,7 +23,7 @@ public class RandomPlayer implements Player {
     
     @Override
     public Move getMove(Board board) {
-        Stream<Move> moveStream = PlayerLogic.getAvailableMoveStream(board);
+        Stream<Move> moveStream = GameLogic.getAvailableMoveStream(board);
         List<Move> moves = moveStream.toList();
         int index = this.random.nextInt(moves.size());
         Move move = moves.get(index);
