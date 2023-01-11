@@ -24,10 +24,10 @@ public class BitBoard extends Board {
      */
 
     private static int initializeData() {
-        int data = 0;
+        int data = NONE_SEGMENT;
         for (int i = 0; i < SIZE * SIZE; ++i) {
+            data <<= SEGMENT_WIDTH;
             data |= NONE_SEGMENT;
-            data <<= 3;
         }
         return data;
     }
@@ -61,16 +61,20 @@ public class BitBoard extends Board {
         return SIZE;
     }
 
+    private static int getShift(int x, int y) {
+        return (y * SIZE + x) * SEGMENT_WIDTH;
+    }
+
     @Override
     public Field get(int x, int y) {
-        int shift = (y * SIZE + x) * SEGMENT_WIDTH;
+        int shift = getShift(x, y);
         int value = (data >> shift) & SEGMENT_MASK;
         return new Field(mapValueToTeam(value));
     }
 
     @Override
     public void set(int x, int y, Team team) {
-        int shift = (y * SIZE + x) * SEGMENT_WIDTH;
+        int shift = getShift(x, y);
         int value = mapTeamToValue(team) << shift;
         int clear = ~(SEGMENT_MASK << shift);
 

@@ -11,6 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class BitBoardTest {
 
     public static final int BOARD_SIZE = 3;
+
     private Board board;
 
     @BeforeEach

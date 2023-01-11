@@ -1,6 +1,6 @@
 package me.jarvis.game;
 
-import me.jarvis.board.SquareBoard;
+import me.jarvis.board.Board;
 import me.jarvis.board.Field;
 import me.jarvis.player.Move;
 
@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 
 public class GameLogic {
 
-    public static Stream<Move> getAvailableMoveStream(SquareBoard board) {
+    public static Stream<Move> getAvailableMoveStream(Board board) {
         Stream<Integer> xCoordStream = IntStream.range(0, board.getSize()).boxed();
         return xCoordStream.flatMap(x -> {
             Stream<Integer> yCoordStream = IntStream.range(0, board.getSize()).boxed();

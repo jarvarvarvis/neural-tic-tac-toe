@@ -1,8 +1,8 @@
 package me.jarvis.player;
 
-import me.jarvis.board.SquareBoard;
+import me.jarvis.board.Board;
 
 public interface Player {
 
-    Move getMove(SquareBoard board);
+    Move getMove(Board board);
 }

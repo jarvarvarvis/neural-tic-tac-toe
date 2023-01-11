@@ -1,6 +1,6 @@
 package me.jarvis.game;
 
-import me.jarvis.board.SquareBoard;
+import me.jarvis.board.Board;
 import me.jarvis.board.Team;
 import me.jarvis.player.Move;
 import me.jarvis.player.Player;
@@ -16,9 +16,9 @@ public class Game {
     private final Player firstPlayer;
     private final Player secondPlayer;
 
-    private final SquareBoard board;
+    private final Board board;
 
-    public Game(SquareBoard board, Player firstPlayer, Player secondPlayer) {
+    public Game(Board board, Player firstPlayer, Player secondPlayer) {
         this.isFirstPlayerCurrent = true;
         this.firstPlayer = firstPlayer;
         this.secondPlayer = secondPlayer;

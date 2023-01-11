@@ -1,11 +1,11 @@
 package me.jarvis.ai.serializers;
 
 import me.jarvis.ai.DataSerializer;
-import me.jarvis.board.SquareBoard;
+import me.jarvis.board.Board;
 import me.jarvis.board.Field;
 import me.jarvis.board.Team;
 
-public class BoardSerializer extends DataSerializer<SquareBoard, Team> {
+public class BoardSerializer extends DataSerializer<Board, Team> {
 
     double serializeTeam(Team team, Team ownTeam) {
         if (team == Team.NONE)
@@ -16,7 +16,7 @@ public class BoardSerializer extends DataSerializer<SquareBoard, Team> {
     }
 
     @Override
-    public double[] serialize(SquareBoard input, Team ownTeam) {
+    public double[] serialize(Board input, Team ownTeam) {
         int size = input.getSize();
         double[] data = new double[size * size];
         for (int y = 0; y < size; ++y) {
