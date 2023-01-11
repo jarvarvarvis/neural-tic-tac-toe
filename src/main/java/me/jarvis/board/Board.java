@@ -1,7 +1,6 @@
 package me.jarvis.board;
 
 import java.util.Arrays;
-import java.util.Map;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -28,7 +27,7 @@ public class Board {
 
     public boolean isValidCoordinate(int x, int y) {
         return x >= 0 && x < this.size &&
-               y >= 0 && y < this.size;
+            y >= 0 && y < this.size;
     }
 
     public Field get(int x, int y) {
@@ -74,16 +73,25 @@ public class Board {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (obj == this) return true;
-        if (obj == null || obj.getClass() != this.getClass()) return false;
-        var that = (Board) obj;
-        return this.size == that.size;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Board board = (Board) o;
+
+        if (size != board.size) return false;
+        return Arrays.deepEquals(fields, board.fields);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = size;
+        result = 31 * result + Arrays.deepHashCode(fields);
+        return result;
     }
 
     @Override
     public String toString() {
-        Map<Team, Character> teamDisplayMap = Map.of(Team.NONE, ' ', Team.ONE, 'O', Team.TWO, 'X');
         StringBuilder resultBuilder = new StringBuilder();
 
         for (int y = 0; y < this.size; ++y) {
@@ -92,8 +100,7 @@ public class Board {
             for (int x = 0; x < this.size; ++x) {
                 Field field = this.get(x, y);
                 Team fieldTeam = field.occupant();
-                char teamDisplayCharacter = teamDisplayMap.get(fieldTeam);
-                resultBuilder.append(teamDisplayCharacter);
+                resultBuilder.append(fieldTeam.toString());
 
                 if (x != this.size - 1)
                     resultBuilder.append(" | ");
